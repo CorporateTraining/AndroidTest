@@ -38,7 +38,7 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void showLoginResult() {
-        loginViewModel.observerLoginResult( this, loginResult -> {
+        loginViewModel.observerLoginViewModel(this, loginResult -> {
             if (loginResult == null) {
                 return;
             }
