@@ -1,4 +1,9 @@
 <resources>
     <string name="app_name">AndroidTest.git</string>
     <string name="login_activity">LoginActivity</string>
+    <string name="username">请输入用户名</string>
+    <string name="password">请输入密码</string>
+    <string name="login">登录</string>
+    <string name="insert">初始化用户信息</string>
+    <string name="login_success">登录成功</string>
 </resources>

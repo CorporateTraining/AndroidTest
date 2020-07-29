@@ -1,10 +1,12 @@
-package com.example.androidtestgit;
+package com.example.androidtestgit.ui;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
+
+import com.example.androidtestgit.R;
 
 public class MainActivity extends AppCompatActivity {
     private Button loginActivityButton;
