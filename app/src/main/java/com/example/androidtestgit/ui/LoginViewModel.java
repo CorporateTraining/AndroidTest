@@ -23,7 +23,7 @@ public class LoginViewModel extends ViewModel {
     private MutableLiveData<LoginResult> loginResultMutableLiveData = new MutableLiveData<>();
     private Disposable insertDisposable, loginDisposable;
     private UserRepository userRepository;
-    private final static String TAG = "LoginViewModel";
+    private final static String TAG = LoginActivity.class.getSimpleName();
 
     public void setUserRepository(UserRepository userRepository) {
         this.userRepository = userRepository;
