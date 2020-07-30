@@ -6,4 +6,5 @@
     <string name="login">登录</string>
     <string name="insert">初始化用户信息</string>
     <string name="login_success">登录成功</string>
+    <string name="login_success_message">Login successfully</string>
 </resources>

@@ -1,6 +1,8 @@
 package com.example.androidtestgit;
 
 
+import android.os.SystemClock;
+
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 import androidx.test.platform.app.InstrumentationRegistry;
 import androidx.test.rule.ActivityTestRule;
@@ -27,6 +29,9 @@ import static androidx.test.espresso.matcher.RootMatchers.withDecorView;
 import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
 import static androidx.test.espresso.matcher.ViewMatchers.withText;
+import static com.example.androidtestgit.repository.user.constant.HintMessage.LOGIN_SUCCESSFULLY;
+import static com.example.androidtestgit.repository.user.constant.HintMessage.PASSWORD_IS_INVALID;
+import static com.example.androidtestgit.repository.user.constant.HintMessage.USERNAME_DOES_NOT_EXIST;
 import static org.hamcrest.Matchers.is;
 import static org.hamcrest.Matchers.not;
 import static org.mockito.Mockito.when;
@@ -50,7 +55,7 @@ public class LoginActivityTest {
         onView(withId(R.id.username)).perform(typeText("xiaoming"));
         onView(withId(R.id.password)).perform(typeText("123456"));
         onView(withId(R.id.login_button)).perform(click());
-        onView(withText("Login successfully"))
+        onView(withText(LOGIN_SUCCESSFULLY))
                 .inRoot(withDecorView(not(is(activityActivityTestRule
                         .getActivity()
                         .getWindow()
@@ -65,7 +70,7 @@ public class LoginActivityTest {
         onView(withId(R.id.username)).perform(typeText("xiaoming"));
         onView(withId(R.id.password)).perform(typeText("234342  "));
         onView(withId(R.id.login_button)).perform(click());
-        onView(withText("Password is invalid"))
+        onView(withText(PASSWORD_IS_INVALID))
                 .inRoot(withDecorView(not(is(activityActivityTestRule
                         .getActivity()
                         .getWindow()
@@ -74,7 +79,6 @@ public class LoginActivityTest {
     }
     @Test
     public void should_return_username_does_not_exist_when_login_given_invalid_username_and_invalid_password() {
-        User user = new User(1, "xiaoming", MD5Util.md5("123456"));
         when(userRepository.findByName("zhangsan")).thenReturn(new Maybe<User>() {
             @Override
             protected void subscribeActual(MaybeObserver<? super User> observer) {
@@ -84,7 +88,7 @@ public class LoginActivityTest {
         onView(withId(R.id.username)).perform(typeText("zhangsan"));
         onView(withId(R.id.password)).perform(typeText("234342  "));
         onView(withId(R.id.login_button)).perform(click());
-        onView(withText("Username does not exist"))
+        onView(withText(USERNAME_DOES_NOT_EXIST))
                 .inRoot(withDecorView(not(is(activityActivityTestRule
                         .getActivity()
                         .getWindow()

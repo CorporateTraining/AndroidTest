@@ -9,6 +9,7 @@ import androidx.lifecycle.ViewModel;
 
 import com.example.androidtestgit.repository.user.User;
 import com.example.androidtestgit.repository.user.UserRepository;
+import com.example.androidtestgit.repository.user.constant.HintMessage;
 import com.example.androidtestgit.repository.user.utils.MD5Util;
 
 import io.reactivex.Completable;
@@ -18,6 +19,10 @@ import io.reactivex.MaybeObserver;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
+
+import static com.example.androidtestgit.repository.user.constant.HintMessage.LOGIN_SUCCESSFULLY;
+import static com.example.androidtestgit.repository.user.constant.HintMessage.PASSWORD_IS_INVALID;
+import static com.example.androidtestgit.repository.user.constant.HintMessage.USERNAME_DOES_NOT_EXIST;
 
 public class LoginViewModel extends ViewModel {
     private MutableLiveData<LoginResult> loginResultMutableLiveData = new MutableLiveData<>();
@@ -73,9 +78,9 @@ public class LoginViewModel extends ViewModel {
                         Log.d(TAG, "onSuccess: ");
                         LoginResult loginResult;
                         if (user != null && MD5Util.md5(password).equals(user.getPassword())) {
-                            loginResult = new LoginResult(true, "Login successfully");
+                            loginResult = new LoginResult(true, LOGIN_SUCCESSFULLY);
                         }else{
-                            loginResult = new LoginResult(false, "Password is invalid");
+                            loginResult = new LoginResult(false, PASSWORD_IS_INVALID);
                         }
                         loginResultMutableLiveData.postValue(loginResult);
                     }
@@ -88,7 +93,7 @@ public class LoginViewModel extends ViewModel {
                     @Override
                     public void onComplete() {
                         Log.d(TAG, "onComplete: ");
-                        loginResultMutableLiveData.postValue(new LoginResult(false, "Username does not exist"));
+                        loginResultMutableLiveData.postValue(new LoginResult(false, USERNAME_DOES_NOT_EXIST));
                     }
                 });
     }
