@@ -92,4 +92,15 @@ public class LoginViewModel extends ViewModel {
                     }
                 });
     }
+
+    @Override
+    protected void onCleared() {
+        if (insertDisposable != null && !insertDisposable.isDisposed()) {
+            insertDisposable.dispose();
+        }
+        if (loginDisposable != null && !loginDisposable.isDisposed()) {
+            loginDisposable.dispose();
+        }
+        super.onCleared();
+    }
 }
